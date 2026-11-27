@@ -13,9 +13,6 @@
 - (void)initWithInitArgument:(ATAdInitArgument *)adInitArgument {
     NSDictionary *settings = adInitArgument.serverContentDic;
     NSString *appId = [settings[@"app_id"] isKindOfClass:NSString.class] ? settings[@"app_id"] : nil;
-#if DEBUG
-    NSLog(@"hh [OSETTopOnAdapter] %@ 后台下发 appId=%@", NSStringFromClass(self.class), @"<redacted>");
-#endif
     if (!appId.length) {
         NSError *error = [NSError errorWithDomain:@"OSETAnyThinkAdapter" code:70001
                                         userInfo:@{NSLocalizedDescriptionKey: @"初始化 appId 为空"}];
@@ -24,9 +21,6 @@
     }
 
     [OSETManager configureWithAppId:appId completion:^(BOOL success, NSError *error) {
-#if DEBUG
-        NSLog(@"hh [OSETTopOnAdapter] 奇点初始化 success=%d errorCode=%ld", success, (long)error.code);
-#endif
         if (success) {
             [self notificationNetworkInitSuccess];
         } else {

@@ -20,9 +20,6 @@
 - (void)loadADWithArgument:(ATAdMediationArgument *)argument {
 
    NSString *osetSlotId = [self osetSlotIdFromServerContent:argument.serverContentDic];
-#if DEBUG
-   NSLog(@"hh [OSETTopOnAdapter] %@ 后台下发 slotId=%@", NSStringFromClass(self.class), @"<redacted>");
-#endif
    id value = argument.localInfoDic[kATAdLoadingExtraUserIDKey];
    NSString *userId = [value isKindOfClass:NSString.class] ? value : @"";
    self.rewardAd = [[OSETRewardVideoAd alloc] initWithSlotId:osetSlotId withUserId:userId];
@@ -44,9 +41,6 @@
 - (void)didReceiveBidResult:(ATBidWinLossResult *)result {
     [OSETCustomBaseAdapter reportBidResult:result forAd:self.rewardAd];
 }
-
-
-
 
 #pragma mark - lazy
 - (OSETRewardedVideoCustomEvent *)customEvent{

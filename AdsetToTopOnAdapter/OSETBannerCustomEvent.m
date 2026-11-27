@@ -18,16 +18,10 @@
     }else{
         extraDic = [OSETCustomBaseAdapter getC2SInfo:0];
     }
-#if DEBUG
-    NSLog(@"hh [OSETTopOnAdapter] %@ 奇点加载成功，回传 TopOn 参与竞价", NSStringFromClass(self.class));
-#endif
     [self.adStatusBridge atOnBannerAdLoadedWithView:bannerView adExtra:extraDic];
 }
 /// banner加载失败
 - (void)bannerLoadToFailed:(id)bannerView error:(NSError *)error{
-#if DEBUG
-    NSLog(@"hh [OSETTopOnAdapter] %@ 奇点加载失败", NSStringFromClass(self.class));
-#endif
     [self.adStatusBridge atOnAdLoadFailed:error adExtra:nil];
 }
 - (void)bannerDidClose:(id)bannerView{

@@ -7,11 +7,7 @@
 
 #import "OSETRewardedVideoCustomEvent.h"
 
-
-
-
 @implementation OSETRewardedVideoCustomEvent
-
 
 - (void)rewardVideoDidReceiveSuccess:(nonnull id)rewardVideoAd slotId:(nonnull NSString *)slotId {
 //    [self trackRewardedVideoAdLoaded:rewardVideoAd adExtra:@{}];
@@ -25,9 +21,6 @@
     }else{
         extraDic = [OSETCustomBaseAdapter getC2SInfo:0];
     }
-#if DEBUG
-    NSLog(@"hh [OSETTopOnAdapter] %@ 奇点加载成功，回传 TopOn 参与竞价", NSStringFromClass(self.class));
-#endif
     [self.adStatusBridge atOnRewardedAdLoadedExtra:extraDic];
 
 }
@@ -35,9 +28,6 @@
 - (void)rewardVideoLoadToFailed:(nonnull id)rewardVideoAd error:(nonnull NSError *)error {
     [ATAdLogger logMessage:@"ATMSRewardedVideoCustomEvent::msRewardVideoError" type:ATLogTypeExternal];
     // 广告加载失败回调
-#if DEBUG
-    NSLog(@"hh [OSETTopOnAdapter] %@ 奇点加载失败", NSStringFromClass(self.class));
-#endif
     [self.adStatusBridge atOnAdLoadFailed:error adExtra:nil];
 }
 

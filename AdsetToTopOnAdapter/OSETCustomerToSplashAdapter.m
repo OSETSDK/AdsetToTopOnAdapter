@@ -8,9 +8,6 @@
 #import "OSETCustomerToSplashAdapter.h"
 #import "OSETSplashCustomEvent.h"
 
-
-
-
 #import <Adset/OSETSDK.h>
 @interface OSETCustomerToSplashAdapter ()
 @property (nonatomic, strong) OSETSplashCustomEvent *customEvent;
@@ -21,9 +18,6 @@
 #pragma mark - load Ad
 - (void)loadADWithArgument:(ATAdMediationArgument *)argument {
     NSString *osetSlotId = [self osetSlotIdFromServerContent:argument.serverContentDic];
-#if DEBUG
-    NSLog(@"hh [OSETTopOnAdapter] %@ 后台下发 slotId=%@", NSStringFromClass(self.class), @"<redacted>");
-#endif
     self.splashAd = [[OSETSplashAd alloc] initWithSlotId:osetSlotId window:nil bottomView:self.containerView];
     self.splashAd.delegate = self.customEvent;
     [self.splashAd loadSplashAd];
@@ -47,10 +41,6 @@
 - (void)didReceiveBidResult:(ATBidWinLossResult *)result {
     [OSETCustomBaseAdapter reportBidResult:result forAd:self.splashAd];
 }
-
-
-
-
 
 #pragma mark - lazy
 - (OSETSplashCustomEvent *)customEvent {

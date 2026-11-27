@@ -8,7 +8,6 @@
 #import "OSETCustomBaseAdapter.h"
 #import <math.h>
 
-
 /** 竞价价格沿用人民币分；非法、负值或超出可表示范围的价格不回传。 */
 static NSNumber *OSETBidPrice(id value) {
     if (![value isKindOfClass:NSString.class]) return nil;
@@ -41,10 +40,6 @@ static NSNumber *OSETBidPrice(id value) {
     NSMutableDictionary *infoDic = [NSMutableDictionary dictionary];
 
     NSString *priceStr = [NSString stringWithFormat:@"%ld",ecpm];
-#if DEBUG
-    NSString *logOriginalString = [NSString stringWithFormat:@"MS:C2S Original priceStr :%@",priceStr];
-    NSLog(@"hh DemoCustomBaseAdapter 获取到广告价格:%@", @"<redacted>");
-#endif
 
     if ([priceStr doubleValue] < 0) {
         priceStr = @"0";
@@ -53,10 +48,6 @@ static NSNumber *OSETBidPrice(id value) {
     [infoDic AT_setDictValue:priceStr key:ATAdSendC2SBidPriceKey];
     [infoDic AT_setDictValue:@(ATBiddingCurrencyTypeCNYCents) key:ATAdSendC2SCurrencyTypeKey];
 
-#if DEBUG
-    NSString *logString = [NSString stringWithFormat:@"[Network:C2S]::MS::%@",infoDic];
-    NSLog(@"hh DemoCustomBaseAdapter 获取到C2S信息:%@", @"<redacted>");
-#endif
     return infoDic;
 }
 

@@ -26,9 +26,6 @@
             bannerSize = argument.bannerSize;
         }
         NSString *osetSlotId = [self osetSlotIdFromServerContent:argument.serverContentDic];
-#if DEBUG
-        NSLog(@"hh [OSETTopOnAdapter] %@ 后台下发 slotId=%@", NSStringFromClass(self.class), @"<redacted>");
-#endif
         self.bannerAd = [[OSETBannerAd alloc] initWithSlotId:osetSlotId rootViewController:argument.viewController rect:CGRectMake(0, 0, bannerSize.width, bannerSize.height)];
         self.bannerAd.delegate  = self.bannerDelegate;
         [self.bannerAd loadAdData];
@@ -48,8 +45,5 @@
 - (void)didReceiveBidResult:(ATBidWinLossResult *)result {
     [OSETCustomBaseAdapter reportBidResult:result forAd:self.bannerAd];
 }
-
-
-
 
 @end

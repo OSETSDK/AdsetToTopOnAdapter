@@ -13,8 +13,6 @@
 @end
 @implementation OSETNativeCustomRenderer
 
-
-
 #pragma mark - 推荐实现，释放资源
 - (void)dealloc {
 }

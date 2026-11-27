@@ -16,7 +16,6 @@
 
 @implementation OSETNativeCustomEvent
 
-
 - (void)nativeExpressAdLoadSuccessWithNative:(id)native nativeExpressViews:(NSArray *)nativeExpressViews{
     self.nativeFeedAd = native;
     if(nativeExpressViews &&  nativeExpressViews.count > 0){
@@ -35,24 +34,14 @@
             nativeObject.nativeExpressAdViewHeight = nativeAdView.frame.size.height;
             [offerArray addObject:nativeObject];
         }];
-#if DEBUG
-        NSLog(@"hh [OSETTopOnAdapter] %@ 奇点加载成功，回传 TopOn 参与竞价", NSStringFromClass(self.class));
-#endif
         [self.adStatusBridge atOnNativeAdLoadedArray:offerArray adExtra:infoDic];
     }
 }
 
-
 - (void)nativeExpressAdFailedToLoad:(nonnull id)nativeExpressAd error:(nonnull NSError *)error {
-#if DEBUG
-    NSLog(@"hh [OSETTopOnAdapter] %@ 奇点加载失败", NSStringFromClass(self.class));
-#endif
     [self.adStatusBridge atOnAdLoadFailed:error adExtra:nil];
 }
 - (void)nativeExpressAdFailedToRender:(nonnull id)nativeExpressView {
-#if DEBUG
-    NSLog(@"hh nativeExpressAdFailedToRender");
-#endif
 }
 - (void)nativeExpressAdDidClick:(nonnull id)nativeExpressView {
     [self.adStatusBridge atOnAdClick:nil];
@@ -64,7 +53,6 @@
 -(void)nativeExpressAdDidExposured:(id)nativeExpressView{
     [self.adStatusBridge atOnAdShow:nil];
 }
-
 
 /// 信息流加载成功
 /// @param nativeDataObjects 信息流广告data数组
@@ -105,9 +93,6 @@
         }
 
         [offerArray addObject:nativeObject];
-#if DEBUG
-        NSLog(@"hh [OSETTopOnAdapter] %@ 奇点加载成功，回传 TopOn 参与竞价", NSStringFromClass(self.class));
-#endif
         [self.adStatusBridge atOnNativeAdLoadedArray:offerArray adExtra:infoDic];
     }
 }
@@ -116,9 +101,6 @@
 /// @param nativeDataAd 信息流实例
 /// @param error 错误信息
 - (void)nativeDataAdFailedToLoad:(id)nativeDataAd error:(NSError *)error{
-#if DEBUG
-    NSLog(@"hh [OSETTopOnAdapter] %@ 奇点加载失败", NSStringFromClass(self.class));
-#endif
     [self.adStatusBridge atOnAdLoadFailed:error adExtra:nil];
 }
 
@@ -151,6 +133,5 @@
 - (void)OSETNativeAdRendererDetailViewClosed:(OSETNativeAdRenderer *)renderer{
 
 }
-
 
 @end

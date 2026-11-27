@@ -9,7 +9,6 @@
 
 @implementation OSETSplashCustomEvent
 
-
 #pragma mark - OSETSplashAdDelegate
 
 /// 开屏加载成功
@@ -23,18 +22,12 @@
     }else{
         extraDic = [OSETCustomBaseAdapter getC2SInfo:0];
     }
-#if DEBUG
-    NSLog(@"hh [OSETTopOnAdapter] %@ 奇点加载成功，回传 TopOn 参与竞价", NSStringFromClass(self.class));
-#endif
     [self.adStatusBridge atOnSplashAdLoadedExtra:extraDic];
 
 }
 
 /// 开屏加载失败
 - (void)splashLoadToFailed:(id)splashAd error:(NSError *)error{
-#if DEBUG
-    NSLog(@"hh [OSETTopOnAdapter] %@ 奇点加载失败", NSStringFromClass(self.class));
-#endif
     [self.adStatusBridge atOnAdLoadFailed:error adExtra:nil];
 }
 /// 开屏点击

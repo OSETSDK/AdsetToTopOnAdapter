@@ -16,14 +16,10 @@
 
 @implementation OSETCustomerToInterstitialAdapter
 
-
 #pragma mark - Ad load
 - (void)loadADWithArgument:(ATAdMediationArgument *)argument {
 
     NSString *osetSlotId = [self osetSlotIdFromServerContent:argument.serverContentDic];
-#if DEBUG
-    NSLog(@"hh [OSETTopOnAdapter] %@ 后台下发 slotId=%@", NSStringFromClass(self.class), @"<redacted>");
-#endif
     self.interstitialAd = [[OSETInterstitialAd alloc] initWithSlotId:osetSlotId];
     self.interstitialAd.delegate = self.customEvent;
     [self.interstitialAd loadInterstitialAdData];
@@ -43,10 +39,6 @@
 - (void)didReceiveBidResult:(ATBidWinLossResult *)result {
     [OSETCustomBaseAdapter reportBidResult:result forAd:self.interstitialAd];
 }
-
-
-
-
 
 #pragma mark - lazy
 - (OSETInterstitialCustomEvent *)customEvent{

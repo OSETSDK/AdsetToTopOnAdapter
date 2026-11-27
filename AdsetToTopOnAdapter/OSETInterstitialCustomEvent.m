@@ -9,7 +9,6 @@
 
 @implementation OSETInterstitialCustomEvent
 
-
 - (void)interstitialDidReceiveSuccess:(nonnull id)interstitialAd slotId:(nonnull NSString *)slotId {
     NSDictionary * extraDic;
     if([interstitialAd isKindOfClass:[OSETInterstitialAd class]]){
@@ -22,16 +21,10 @@
 //    [extraDic setValue:@"dwadaw" forKey:@"dawdaw"];
 //    //传入自定义参数
 //    [self.adStatusBridge setNetworkCustomInfo:extraDic];
-#if DEBUG
-    NSLog(@"hh [OSETTopOnAdapter] %@ 奇点加载成功，回传 TopOn 参与竞价", NSStringFromClass(self.class));
-#endif
     [self.adStatusBridge atOnInterstitialAdLoadedExtra:extraDic];
 }
 
 - (void)interstitialLoadToFailed:(nonnull id)interstitialAd error:(nonnull NSError *)error {
-#if DEBUG
-    NSLog(@"hh [OSETTopOnAdapter] %@ 奇点加载失败", NSStringFromClass(self.class));
-#endif
     [self.adStatusBridge atOnAdLoadFailed:error adExtra:nil];
 }
 
