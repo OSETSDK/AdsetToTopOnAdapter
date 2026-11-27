@@ -18,7 +18,8 @@
 #pragma mark - load Ad
 - (void)loadADWithArgument:(ATAdMediationArgument *)argument {
     NSString *osetSlotId = [self osetSlotIdFromServerContent:argument.serverContentDic];
-    self.splashAd = [[OSETSplashAd alloc] initWithSlotId:osetSlotId window:nil bottomView:self.containerView];
+    UIWindow *window = self.containerView.window ?: argument.viewController.view.window;
+    self.splashAd = [[OSETSplashAd alloc] initWithSlotId:osetSlotId window:window bottomView:self.containerView];
     self.splashAd.delegate = self.customEvent;
     [self.splashAd loadSplashAd];
 }

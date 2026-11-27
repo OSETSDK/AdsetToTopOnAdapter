@@ -26,7 +26,6 @@
 }
 - (void)bannerDidClose:(id)bannerView{
     [self.adStatusBridge atOnAdClosed:nil];
-    OSETBaseView * banner = bannerView;
     if([bannerView isKindOfClass:[UIView class]]){
         UIView *view = (UIView *)bannerView;
         [view removeFromSuperview];
